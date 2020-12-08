@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap');
+
+body{
+    margin: 0;
+    background-color: #828C5D;
+    color: #730D0D;
+    font-family: 'MedievalSharp', cursive;
+    font-size: 1.2em;
+}
+
+.container nav{
+    height: 50px;
+    background-color: #A66E68;
+}
+
+nav button{
+    height: 30px;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+li{
+    list-style-type: none;
+}
+
+.page{
+    min-height: calc(100vh - 100px);
+    padding-top: 50px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+h1{
+    margin-top: 20px;
+}
+
+.footer{
+    height: 50px;
+    width: 100%;
+    background-color: #A66E68;
+}
+
+#profile_page{
+    background-color: #F2E0D0;
+}
+
+#adventure_page{
+    background-color: #BFAC73;
+    display: none;
+}
+
+#profile_pics{
+    width: 200px;
+    height: 300px;
+    margin-left: calc(50% - 100px);
+}
+
+#adventure_page button{
+    max-width: 500px;
+    width: 50%;
+    display: block;
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#adventure_page button:hover{
+    background-color: white;
+    font-weight: bold;
+}
