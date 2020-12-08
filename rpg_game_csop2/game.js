@@ -89,3 +89,67 @@ function lvl_up(){
 
 /* ADVENTURE */
 
+let story =  document.getElementById("story");
+
+function rnd_szazalek(){
+    return Math.floor(Math.random()*100);
+}
+
+function favagas(){
+    let szazalek = rnd_szazalek();
+    if(szazalek <= 20){
+        //sebződés
+        // story.innerHTML += "A lábujjadra esett a fejsze! (-5 élet)<br>";
+        // stats.life -= 5;
+
+        harc("Medve", 100, 8);
+
+        refreshProfileStats();
+    } else{
+        //sikeres favágás
+        story.innerHTML += "Sikeres a favágás! (+1 tapasztalat)<br>";
+        stats.experience += 1;
+        refreshProfileStats();
+    }
+}
+
+function harc(e_name, e_life, e_damage){
+    story.innerHTML = "Egy " + e_name + " megtámadott téged!<br>";
+
+    // harc kimenetele: nyerünk, vesztünk, elmenekülünk (letelik 5 kör)
+    let counter = 0;
+    let ellenfel_tamad = true;
+    do {
+        counter++;
+        story.innerHTML += "<br>__"+counter+". kör__<br>";
+        let szazalek = rnd_szazalek();
+        if(ellenfel_tamad){
+
+            let elkerules = 50 + stats.deffense;
+            if(elkerules >= 100) elkerules = 95; 
+
+            if(szazalek > elkerules){
+                story.innerHTML += "Elkerülöd "+e_name+" félelmetes csapását!<br>";
+            }else{
+                story.innerHTML += "A" +e_name+" eltalál és megsebez! (-"+e_damage+" élet)<br>";
+                stats.life -= e_damage;
+            }
+        }else{
+            let elkerules = 50;
+            if(szazalek > elkerules){
+                story.innerHTML += "A "+e_name+" elkerüli a csapásodat!<br>";
+            }else{
+                story.innerHTML += "Eltalálod a " +e_name+"-t! (-"+stats.strength+" élet)<br>";
+                
+                e_life -= stats.strength;
+
+                story.innerHTML += e_name +"-nak/-nek "+e_life+" élete maradt!<br>";
+            }
+
+        }
+
+        ellenfel_tamad = !ellenfel_tamad; // váltogatja ki támad
+
+        
+    } while (stats.life > 0 && e_life > 0 && counter <= 10);
+}
